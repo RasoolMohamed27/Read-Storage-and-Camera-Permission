@@ -1,0 +1,11 @@
+R_DEF: Internal format may change without notice
+local
+attr? phonemoji_flagFor
+attr? phonemoji_flagSize
+attr phonemoji_initialCountryCode
+attr phonemoji_initialRegionCode
+attr? phonemoji_showFlag
+dimen phonemoji_default_flag_size
+styleable PhonemojiFlagTextView phonemoji_flagFor phonemoji_initialCountryCode phonemoji_initialRegionCode
+styleable PhonemojiTextInputEditText phonemoji_initialCountryCode phonemoji_initialRegionCode
+styleable PhonemojiTextInputLayout phonemoji_flagSize phonemoji_showFlag

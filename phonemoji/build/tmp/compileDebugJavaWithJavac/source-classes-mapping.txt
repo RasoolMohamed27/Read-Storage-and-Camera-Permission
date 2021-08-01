@@ -1,0 +1,2 @@
+com/tfcporciuncula/phonemoji/BuildConfig.java
+ com.tfcporciuncula.phonemoji.BuildConfig

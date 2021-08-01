@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Rasool Mohamed/Personal Projects/My Github Projects/Profile/app/src/main/res/drawable/dialog_no_btn_bg.xml" value="0.15925925925925927" />
+        <entry key="..\:/Rasool Mohamed/Personal Projects/My Github Projects/Profile/app/src/main/res/drawable/dialog_yes_btn_bg.xml" value="0.15925925925925927" />
+        <entry key="..\:/Rasool Mohamed/Personal Projects/My Github Projects/Profile/app/src/main/res/drawable/ic_camera.xml" value="0.15925925925925927" />
+        <entry key="..\:/Rasool Mohamed/Personal Projects/My Github Projects/Profile/app/src/main/res/drawable/ic_delete_profile_photo.xml" value="0.2203125" />
+        <entry key="..\:/Rasool Mohamed/Personal Projects/My Github Projects/Profile/app/src/main/res/drawable/ic_gallery.xml" value="0.15925925925925927" />
+        <entry key="..\:/Rasool Mohamed/Personal Projects/My Github Projects/Profile/app/src/main/res/drawable/ic_profile.xml" value="0.2203125" />
+        <entry key="..\:/Rasool Mohamed/Personal Projects/My Github Projects/Profile/app/src/main/res/drawable/rounded_view_light_gray.xml" value="0.15925925925925927" />
+        <entry key="..\:/Rasool Mohamed/Personal Projects/My Github Projects/Profile/app/src/main/res/drawable/toolbar_bg.xml" value="0.2203125" />
+        <entry key="..\:/Rasool Mohamed/Personal Projects/My Github Projects/Profile/app/src/main/res/drawable/top_rounded_view_alert_title.xml" value="0.15925925925925927" />
+        <entry key="..\:/Rasool Mohamed/Personal Projects/My Github Projects/Profile/app/src/main/res/drawable/view_bg.xml" value="0.2203125" />
+        <entry key="..\:/Rasool Mohamed/Personal Projects/My Github Projects/Profile/app/src/main/res/layout/dialog_permission_alert.xml" value="0.1" />
+        <entry key="..\:/Rasool Mohamed/Personal Projects/My Github Projects/Profile/app/src/main/res/layout/dialog_profile_image_option.xml" value="0.1" />
+        <entry key="..\:/Rasool Mohamed/Personal Projects/My Github Projects/Profile/app/src/main/res/layout/main_activity.xml" value="0.1" />
+        <entry key="..\:/Rasool Mohamed/Personal Projects/My Github Projects/Profile/app/src/main/res/layout/main_fragment.xml" value="0.18" />
+        <entry key="..\:/Rasool Mohamed/Personal Projects/My Github Projects/Profile/app/src/main/res/layout/profile_fragment.xml" value="0.20416666666666666" />
+        <entry key="..\:/Rasool Mohamed/Personal Projects/My Github Projects/Profile/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2203125" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

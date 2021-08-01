@@ -1,0 +1,39 @@
+-- Merging decision tree log ---
+manifest
+ADDED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml:1:1-25:12
+INJECTED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml:1:1-25:12
+INJECTED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml:1:1-25:12
+	package
+		ADDED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml:4:3-41
+		INJECTED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml
+		INJECTED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml
+	xmlns:tools
+		ADDED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml:3:3-49
+	xmlns:android
+		ADDED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml:2:3-61
+application
+ADDED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml:7:3-23:17
+provider#androidx.startup.InitializationProvider
+ADDED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml:9:5-21:16
+	tools:node
+		ADDED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml:13:7-25
+	android:authorities
+		ADDED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml:11:7-62
+	android:exported
+		ADDED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml:12:7-31
+	android:name
+		ADDED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml:10:7-61
+meta-data#com.tfcporciuncula.phonemoji.internal.PhoneNumberUtilInitializer
+ADDED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml:16:7-19:11
+	android:value
+		ADDED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml:18:9-41
+	android:name
+		ADDED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml:17:9-88
+uses-sdk
+INJECTED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml
+INJECTED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml
+		ADDED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml
+		INJECTED from D:\Rasool Mohamed\Personal Projects\My Github Projects\Profile\phonemoji\src\main\AndroidManifest.xml

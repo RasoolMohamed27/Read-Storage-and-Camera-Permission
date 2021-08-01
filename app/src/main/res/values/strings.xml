@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Profile</string>
+
+    <string name="APP_DATA" translatable="false">APP_DATA</string>
+    <string name="profile_path" translatable="false">profile_path</string>
+
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="nationality">Nationality</string>
+    <string name="gender">Gender</string>
+    <string name="join_date">Join Date</string>
+    <string name="update">Update</string>
+    <string name="gallery">Gallery</string>
+    <string name="remove_photo">Remove Photo</string>
+    <string name="storage_permission_denied">Read Storage Permission was denied but it is needed for Profile Image.</string>
+    <string name="ok_caps">OK</string>
+    <string name="cancel_caps">CANCEL</string>
+    <string name="read_storage_permission_required">Read Storage Permission</string>
+    <string name="camera_permission">Camera Permission</string>
+    <string name="camera_permission_denied">Camera Permission was denied but it is needed for Profile Image.</string>
+    <string name="camera">Camera</string>
+    <string name="remove">Remove</string>
+    <string name="settings_caps">SETTINGS</string>
+    <string name="yes_remove">Yes, Remove</string>
+    <string name="no_don_t">No, Don\'t</string>
+
+</resources>

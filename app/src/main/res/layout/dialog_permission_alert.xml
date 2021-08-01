@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="30dp"
+    android:layout_marginEnd="30dp"
+
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/rounded_view_light_gray">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/id_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="24dp"
+        android:fontFamily="@font/poppins_bold"
+        android:text="@string/read_storage_permission_required"
+        android:textColor="@color/tab_color"
+        android:background="@drawable/top_rounded_view_alert_title"
+        android:gravity="center"
+        android:textSize="18sp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/id_message_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="@string/storage_permission_denied"
+        android:textColor="@color/colorPrimaryVariant"
+        android:gravity="start"
+        android:textSize="18sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:weightSum="2"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="24dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/no_btn"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:textColor="@color/dialog_delete_yes_btn_txt_color"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/dialog_yes_btn_bg"
+            android:textDirection="ltr"
+            android:layoutDirection="ltr"
+            android:text="@string/yes_remove"
+            android:textAllCaps="false"/>
+        <!--style="?android:attr/buttonBarButtonStyle" -->
+        <!--android:background="@drawable/ripple_effect_delete_alert"-->
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/yes_btn"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_regular"
+            android:background="@drawable/dialog_no_btn_bg"
+            android:textDirection="ltr"
+            android:layoutDirection="ltr"
+            android:text="@string/no_don_t"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+
+</LinearLayout>

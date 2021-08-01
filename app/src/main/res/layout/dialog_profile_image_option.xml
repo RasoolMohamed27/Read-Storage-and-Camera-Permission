@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="30dp"
+    android:layout_marginEnd="30dp"
+    android:padding="24dp"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/rounded_view_light_gray">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="3"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+
+        <LinearLayout
+            android:id="@+id/id_gallery_ll"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/id_gallery_img"
+                android:layout_height="48dp"
+                android:layout_width="48dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_gallery"
+                android:contentDescription="@string/gallery"/>
+
+
+            <TextView
+                android:id="@+id/tv_gallery"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:fontFamily="@font/poppins_regular"
+                android:paddingTop="8dp"
+                android:text="@string/gallery"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/id_camera_ll"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/id_camera_img"
+                android:layout_height="48dp"
+                android:layout_width="48dp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/camera"
+                app:srcCompat="@drawable/ic_camera" />
+
+            <TextView
+                android:id="@+id/tv_camera"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:paddingTop="8dp"
+                android:text="@string/camera"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/id_remove_photo_ll"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/id_remove_photo_img"
+                android:layout_height="48dp"
+                android:layout_width="48dp"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/ic_delete_profile_photo"
+                android:contentDescription="@string/remove"/>
+
+            <TextView
+                android:id="@+id/tv_delete"
+                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:paddingTop="8dp"
+                android:text="@string/remove"
+                android:fontFamily="@font/poppins_regular"
+                android:textColor="@color/colorPrimary"
+                android:textSize="16sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

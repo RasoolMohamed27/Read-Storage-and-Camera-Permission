@@ -1,0 +1,21 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+  compileSdk 30
+
+  defaultConfig {
+    minSdk 24
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+}
+
+dependencies {
+  implementation "androidx.startup:startup-runtime:1.0.0"
+  api "com.google.android.material:material:1.4.0"
+  api "io.michaelrocks:libphonenumber-android:8.12.16"
+}
