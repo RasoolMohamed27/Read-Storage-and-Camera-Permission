@@ -19,7 +19,15 @@ from openpyxl.styles import Font, Alignment, PatternFill
 from openpyxl.utils import get_column_letter
 from io import BytesIO
 from PIL import Image
+from urllib.parse import quote
 import sys
+
+
+# Constants
+THUMBNAIL_SIZE = 300
+EXCEL_IMAGE_SIZE = 250
+IMAGES_DIR = "figma_comparison_images"
+BATCH_SIZE = 50  # Conservative limit below Figma API's 100 IDs per request
 
 
 class FigmaComparator:
@@ -77,7 +85,7 @@ class FigmaComparator:
             node_name = node.get("name", "")
             node_id = node.get("id", "")
             
-            # Consider FRAME, COMPONENT, and CANVAS as potential screens
+            # Consider frames and components as potential screens
             if node_type in ["FRAME", "COMPONENT", "COMPONENT_SET"]:
                 screens.append({
                     "id": node_id,
@@ -102,16 +110,16 @@ class FigmaComparator:
         if not node_ids:
             return {}
         
-        # Figma API limits to 100 IDs per request
-        batch_size = 50
+        # Use conservative batch size to stay well under Figma API limit
         all_images = {}
         
-        for i in range(0, len(node_ids), batch_size):
-            batch = node_ids[i:i + batch_size]
-            ids_param = ",".join(batch)
+        for i in range(0, len(node_ids), BATCH_SIZE):
+            batch = node_ids[i:i + BATCH_SIZE]
+            # URL encode the node IDs to handle special characters
+            ids_param = ",".join(quote(nid, safe='') for nid in batch)
             url = f"{self.base_url}/images/{file_key}?ids={ids_param}&format=png&scale=2"
             
-            print(f"Fetching images for batch {i//batch_size + 1}...")
+            print(f"Fetching images for batch {i//BATCH_SIZE + 1}...")
             
             try:
                 response = requests.get(url, headers=self.headers)
@@ -126,11 +134,21 @@ class FigmaComparator:
     def download_image(self, url):
         """Download image from URL and return PIL Image object."""
         try:
-            response = requests.get(url)
+            response = requests.get(url, timeout=30)
             response.raise_for_status()
+            
+            # Validate content type
+            content_type = response.headers.get('content-type', '')
+            if not content_type.startswith('image/'):
+                print(f"Warning: Unexpected content type: {content_type}")
+                return None
+            
             return Image.open(BytesIO(response.content))
+        except requests.exceptions.RequestException as e:
+            print(f"Error downloading image from {url}: {e}")
+            return None
         except Exception as e:
-            print(f"Error downloading image: {e}")
+            print(f"Error processing image from {url}: {e}")
             return None
     
     def compare_files(self, file_key1, file_key2):
@@ -206,6 +224,30 @@ class FigmaComparator:
         
         return comparison_data
     
+    def _add_screen_image_to_excel(self, ws, current_row, screen_name, screen, comparison_data, file_key, column):
+        """Helper method to add screen image to Excel (reduces code duplication)."""
+        image_url = comparison_data.get("images", {}).get(screen["id"])
+        if image_url:
+            try:
+                img = self.download_image(image_url)
+                if img:
+                    # Resize image to fit in cell
+                    img.thumbnail((THUMBNAIL_SIZE, THUMBNAIL_SIZE), Image.Resampling.LANCZOS)
+                    img_path = os.path.join(IMAGES_DIR, f"{file_key}_{screen['id']}.png")
+                    img.save(img_path)
+                    
+                    # Add to Excel
+                    xl_img = XLImage(img_path)
+                    xl_img.width = EXCEL_IMAGE_SIZE
+                    xl_img.height = EXCEL_IMAGE_SIZE
+                    ws.add_image(xl_img, f'{get_column_letter(column)}{current_row}')
+            except OSError as e:
+                print(f"Error saving image for {screen_name} (ID: {screen['id']}): {e}")
+                ws.cell(row=current_row, column=column).value = "Image save failed"
+            except Exception as e:
+                print(f"Error adding image for {screen_name} (ID: {screen['id']}): {e}")
+                ws.cell(row=current_row, column=column).value = "Image not available"
+    
     def generate_excel_report(self, comparison_data, output_file="figma_comparison.xlsx"):
         """Generate Excel report with comparison results."""
         print("\n=== Generating Excel Report ===\n")
@@ -250,9 +292,12 @@ class FigmaComparator:
         
         print(f"Processing {len(all_screen_names)} unique screen names...")
         
-        # Create images directory
-        images_dir = "figma_comparison_images"
-        os.makedirs(images_dir, exist_ok=True)
+        # Create images directory with error handling
+        try:
+            os.makedirs(IMAGES_DIR, exist_ok=True)
+        except OSError as e:
+            print(f"Error creating images directory: {e}")
+            print("Will attempt to continue without saving images...")
         
         current_row = 2
         
@@ -263,64 +308,30 @@ class FigmaComparator:
             ws.row_dimensions[current_row].height = 200
             
             # File 1 screen
-            if screen_name in screens1_dict:
-                screen1 = screens1_dict[screen_name]
+            screen1 = screens1_dict.get(screen_name)
+            if screen1:
                 ws.cell(row=current_row, column=1).value = screen_name
-                
-                # Add image if available
-                image_url = comparison_data["file1"]["images"].get(screen1["id"])
-                if image_url:
-                    try:
-                        img = self.download_image(image_url)
-                        if img:
-                            # Resize image to fit in cell
-                            img.thumbnail((300, 300), Image.Resampling.LANCZOS)
-                            img_path = os.path.join(images_dir, f"file1_{screen1['id']}.png")
-                            img.save(img_path)
-                            
-                            # Add to Excel
-                            xl_img = XLImage(img_path)
-                            xl_img.width = 250
-                            xl_img.height = 250
-                            ws.add_image(xl_img, f'B{current_row}')
-                    except Exception as e:
-                        print(f"Error adding image: {e}")
-                        ws.cell(row=current_row, column=2).value = "Image not available"
+                self._add_screen_image_to_excel(ws, current_row, screen_name, screen1, 
+                                               comparison_data["file1"], "file1", 2)
             
             # File 2 screen
-            if screen_name in screens2_dict:
-                screen2 = screens2_dict[screen_name]
+            screen2 = screens2_dict.get(screen_name)
+            if screen2:
                 ws.cell(row=current_row, column=3).value = screen_name
-                
-                # Add image if available
-                image_url = comparison_data["file2"]["images"].get(screen2["id"])
-                if image_url:
-                    try:
-                        img = self.download_image(image_url)
-                        if img:
-                            # Resize image to fit in cell
-                            img.thumbnail((300, 300), Image.Resampling.LANCZOS)
-                            img_path = os.path.join(images_dir, f"file2_{screen2['id']}.png")
-                            img.save(img_path)
-                            
-                            # Add to Excel
-                            xl_img = XLImage(img_path)
-                            xl_img.width = 250
-                            xl_img.height = 250
-                            ws.add_image(xl_img, f'D{current_row}')
-                    except Exception as e:
-                        print(f"Error adding image: {e}")
-                        ws.cell(row=current_row, column=4).value = "Image not available"
+                self._add_screen_image_to_excel(ws, current_row, screen_name, screen2,
+                                               comparison_data["file2"], "file2", 4)
             
             # Add comments
             comments = []
-            if screen_name in screens1_dict:
-                screen1_id = screens1_dict[screen_name]["id"]
+            screen1 = screens1_dict.get(screen_name)
+            if screen1:
+                screen1_id = screen1["id"]
                 if screen1_id in comparison_data["file1"]["comments"]:
                     comments.extend([f"File 1: {c}" for c in comparison_data["file1"]["comments"][screen1_id]])
             
-            if screen_name in screens2_dict:
-                screen2_id = screens2_dict[screen_name]["id"]
+            screen2 = screens2_dict.get(screen_name)
+            if screen2:
+                screen2_id = screen2["id"]
                 if screen2_id in comparison_data["file2"]["comments"]:
                     comments.extend([f"File 2: {c}" for c in comparison_data["file2"]["comments"][screen2_id]])
             
@@ -337,7 +348,7 @@ class FigmaComparator:
         # Save workbook
         wb.save(output_file)
         print(f"\n✓ Excel report saved to: {output_file}")
-        print(f"✓ Images saved to: {images_dir}/")
+        print(f"✓ Images saved to: {IMAGES_DIR}/")
         
         return output_file
 

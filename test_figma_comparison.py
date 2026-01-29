@@ -9,6 +9,7 @@ import unittest
 from unittest.mock import Mock, patch, MagicMock
 import sys
 import os
+import requests
 
 # Add parent directory to path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -131,7 +132,6 @@ class TestFigmaComparator(unittest.TestCase):
     @patch('figma_comparison.requests.get')
     def test_get_file_data_failure(self, mock_get):
         """Test failed file data retrieval."""
-        import requests
         mock_get.side_effect = requests.exceptions.RequestException("API Error")
         
         result = self.comparator.get_file_data("test_file_key")
