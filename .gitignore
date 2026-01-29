@@ -13,3 +13,9 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Figma comparison tool outputs
+figma_comparison_images/
+*.xlsx
+__pycache__/
+*.pyc
